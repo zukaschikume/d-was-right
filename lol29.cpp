@@ -21,7 +21,7 @@ int main() {
     int szukana;
     cout << "Podaj liczbe do wyszukania: ";
     cin >> szukana;
-    int wynik = wyszukiwanie_binarne(tablica, 0, 14, szukana);  // Rozmiar tablicy to 15
+    int wynik = wyszukiwanie_binarne(tablica, 0, 14, szukana);  
     if (wynik != -1)
         cout << "Element znaleziony na indeksie: " << wynik << endl;
     else
