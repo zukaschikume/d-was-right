@@ -1,4 +1,4 @@
-﻿#include<iostream>
+﻿#include <iostream>
 using namespace std;
 
 int wyszukiwanie_binarne(int tablica[], int lewy, int prawy, int szukana) {
@@ -21,7 +21,7 @@ int main() {
     int szukana;
     cout << "Podaj liczbe do wyszukania: ";
     cin >> szukana;
-    int wynik = wyszukiwanie_binarne(tablica, 0, 14, szukana);  
+    int wynik = wyszukiwanie_binarne(tablica, 0, 14, szukana);
     if (wynik != -1)
         cout << "Element znaleziony na indeksie: " << wynik << endl;
     else
