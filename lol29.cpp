@@ -1,4 +1,4 @@
-﻿#include <iostream>`
+﻿#include<iostream>
 using namespace std;
 
 int wyszukiwanie_binarne(int tablica[], int lewy, int prawy, int szukana) {
