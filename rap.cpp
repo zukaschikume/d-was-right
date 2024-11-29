@@ -15,7 +15,6 @@ void rozkladNaCzynnikiPierwsze(int n) {
         }
     }
 
-    // Jeżeli n jest większe od 2, to jest liczbą pierwszą
     if (n > 2) {
         cout << n << " ";
     }
