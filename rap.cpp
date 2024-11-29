@@ -2,13 +2,12 @@
 using namespace std;
 
 void rozkladNaCzynnikiPierwsze(int n) {
-    // Sprawdzamy dzielnoœæ przez 2
+    // Sprawdzamy dzielnoÅ›Ä‡ przez 2
     while (n % 2 == 0) {
         cout << 2 << " ";
         n /= 2;
     }
-
-    // Sprawdzamy dzielnoœæ przez liczby nieparzyste od 3 do sqrt(n)
+    
     for (int i = 3; i * i <= n; i += 2) {
         while (n % i == 0) {
             cout << i << " ";
@@ -16,7 +15,7 @@ void rozkladNaCzynnikiPierwsze(int n) {
         }
     }
 
-    // Je¿eli n jest wiêksze od 2, to jest liczb¹ pierwsz¹
+    // JeÅ¼eli n jest wiÄ™ksze od 2, to jest liczbÄ… pierwszÄ…
     if (n > 2) {
         cout << n << " ";
     }
@@ -24,10 +23,10 @@ void rozkladNaCzynnikiPierwsze(int n) {
 
 int main() {
     int liczba;
-    cout << "Podaj liczbê: ";
+    cout << "Podaj liczbÄ™: ";
     cin >> liczba;
 
-    cout << "Rozk³ad na czynniki pierwsze: ";
+    cout << "RozkÅ‚ad na czynniki pierwsze: ";
     rozkladNaCzynnikiPierwsze(liczba);
 
     return 0;
