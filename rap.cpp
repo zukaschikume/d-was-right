@@ -2,7 +2,6 @@
 using namespace std;
 
 void rozkladNaCzynnikiPierwsze(int n) {
-    // Sprawdzamy dzielność przez 2
     while (n % 2 == 0) {
         cout << 2 << " ";
         n /= 2;
