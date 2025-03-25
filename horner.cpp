@@ -1,33 +1,37 @@
 #include <iostream>
-#include <vector>
-
 using namespace std;
 
-double horner(const vector<double>& wspolczynniki, double x) {
-    double wynik = wspolczynniki[0];
-    for (size_t i = 1; i < wspolczynniki.size(); i++) {
-        wynik = wynik * x + wspolczynniki[i];
+double horner(int* wspolczynniki, int stopien, double x) {
+    double wynik = wspolczynniki[0]; 
+    for (int i = 1; i <= stopien; ++i) {
+        wynik = wynik * x + wspolczynniki[i]; 
     }
     return wynik;
 }
 
 int main() {
     int stopien;
+    double x;
+
+
     cout << "Podaj stopien wielomianu: ";
     cin >> stopien;
 
-    vector<double> wspolczynniki(stopien + 1);
-    for (int i = 0; i <= stopien; i++) {
-        cout << "Podaj wspolczynnik stojacy przy potedze " << stopien - i << ": ";
-        cin >> wspolczynniki[i];
+    int* wspolczynniki = new int[stopien + 1];
+
+    for (int i = stopien; i >= 0; --i) {
+        cout << "Podaj wspolczynnik stojacy przy potedze " << i << ": ";
+        cin >> wspolczynniki[stopien - i];
     }
 
-    double argument;
     cout << "Podaj argument: ";
-    cin >> argument;
+    cin >> x;
 
-    double wynik = horner(wspolczynniki, argument);
-    cout << "W( " << argument << " ) = " << wynik << endl;
+    double wynik = horner(wspolczynniki, stopien, x);
+
+    cout << "W( " << x << " ) = " << wynik << endl;
+
+    delete[] wspolczynniki;
 
     return 0;
 }
