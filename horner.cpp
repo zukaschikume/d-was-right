@@ -3,7 +3,6 @@
 
 using namespace std;
 
-// Funkcja obliczająca wartość wielomianu metodą Hornera
 double horner(const vector<double>& wspolczynniki, double x) {
     double wynik = wspolczynniki[0];
     for (size_t i = 1; i < wspolczynniki.size(); i++) {
