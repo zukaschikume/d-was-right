@@ -8,17 +8,17 @@ double funkcja(double x) {
 }
 
 double bisection(double a, double b, double epsilon) {
-    // Krok K1 i K2: sprawdzamy czy pierwiastek nie znajduje się na granicach przedziału
+    // sprawdzamy czy pierwiastek nie znajduje się na granicach przedziału
     if (funkcja(a) == 0.0) {
-        return a;  // Jeśli f(a) = 0, to a jest pierwiastkiem
+        return a;  
     }
     if (funkcja(b) == 0.0) {
-        return b;  // Jeśli f(b) = 0, to b jest pierwiastkiem
+        return b;  
     }
 
-    // Krok K3: dopóki szerokość przedziału jest większa niż epsilon
+    //  dopóki szerokość przedziału jest większa niż epsilon
     while ((b - a) > epsilon) {
-        // Krok K4: obliczamy środek przedziału
+        //  obliczamy środek przedziału
         double srodek = (a + b) / 2.0;
 
         // Krok K5: jeżeli f(srodek) = 0 to zwracamy środek
@@ -26,7 +26,7 @@ double bisection(double a, double b, double epsilon) {
             return srodek;
         }
 
-        // Krok K6: sprawdzamy w której połowie przedziału znajduje się pierwiastek
+        // sprawdzamy w której połowie przedziału znajduje się pierwiastek
         if (funkcja(a) * funkcja(srodek) < 0) {
             b = srodek;  // Pierwiastek znajduje się w lewej części przedziału
         } else {
