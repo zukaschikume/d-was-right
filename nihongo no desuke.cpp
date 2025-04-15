@@ -21,7 +21,6 @@ double bisection(double a, double b, double epsilon) {
         //  obliczamy środek przedziału
         double srodek = (a + b) / 2.0;
 
-        // Krok K5: jeżeli f(srodek) = 0 to zwracamy środek
         if (funkcja(srodek) == 0.0) {
             return srodek;
         }
