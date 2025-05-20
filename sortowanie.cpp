@@ -2,7 +2,6 @@
 using namespace std;
  
 void merge(int tab[], int l, int m, int r) {
-    // K1: lSize ← m - l + 1
     int lSize = m - l + 1;
  
     int rSize = r - m;
