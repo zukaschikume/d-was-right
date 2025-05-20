@@ -1,83 +1,90 @@
 #include <iostream>
-#include <vector>
-
 using namespace std;
-
-// Funkcja pomocnicza do scalania dwóch posortowanych części
-void merge(vector<int>& arr, int left, int mid, int right) {
-    int n1 = mid - left + 1;
-    int n2 = right - mid;
-
-    // Tworzenie tymczasowych tablic
-    vector<int> L(n1);
-    vector<int> R(n2);
-
-    // Kopiowanie danych do tablic pomocniczych
-    for (int i = 0; i < n1; i++)
-        L[i] = arr[left + i];
-    for (int j = 0; j < n2; j++)
-        R[j] = arr[mid + 1 + j];
-
-    // Scalanie tymczasowych tablic z powrotem do arr[]
-    int i = 0, j = 0, k = left;
-
-    while (i < n1 && j < n2) {
-        if (L[i] <= R[j]) {
-            arr[k] = L[i];
-            i++;
+ 
+void merge(int tab[], int l, int m, int r) {
+    // K1: lSize ← m - l + 1
+    int lSize = m - l + 1;
+ 
+    int rSize = r - m;
+ 
+    //Tablice pomocnicze
+    int* tabL = new int[lSize];
+    int* tabR = new int[rSize];
+ 
+    //Kopiowanie danych do tablicy pomocniczej tabL
+    for (int x = 0; x < lSize; x++) {
+        tabL[x] = tab[l + x];
+    }
+ 
+      //Kopiowanie danych do tablicy pomocniczej tabR
+    for (int y = 0; y < rSize; y++) {
+        tabR[y] = tab[m + 1 + y];
+    }
+ 
+    // Inicjalizacja indeksów
+    int indexL = 0;
+    int indexR = 0;
+    int currIndex = l;
+ 
+    // Scalanie tabL i tabR z powrotem do tab[]
+    while (indexL < lSize && indexR < rSize) {
+        if (tabL[indexL] <= tabR[indexR]) {
+            tab[currIndex] = tabL[indexL];
+            indexL++;
         } else {
-            arr[k] = R[j];
-            j++;
+            tab[currIndex] = tabR[indexR];
+            indexR++;
         }
-        k++;
+        currIndex++;
     }
-
-    // Kopiowanie pozostałych elementów L[], jeśli są
-    while (i < n1) {
-        arr[k] = L[i];
-        i++;
-        k++;
+ 
+    // Kopiowanie pozostałości z tabL (jeśli są)
+    while (indexL < lSize) {
+        tab[currIndex++] = tabL[indexL++];
     }
-
-    // Kopiowanie pozostałych elementów R[], jeśli są
-    while (j < n2) {
-        arr[k] = R[j];
-        j++;
-        k++;
+ 
+    // K14: Kopiowanie pozostałości z tabR (jeśli są)
+    while (indexR < rSize) {
+        tab[currIndex++] = tabR[indexR++];
+    }
+ 
+    // Zwolnienie pamięci
+    delete[] tabL;
+    delete[] tabR;
+}
+ 
+// Funkcja rekurencyjna sortująca tablicę
+void mergeSort(int tab[], int l, int r) {
+    if (l < r) {
+        int m = l + (r - l) / 2;
+ 
+        // Sortowanie lewej i prawej części
+        mergeSort(tab, l, m);
+        mergeSort(tab, m + 1, r);
+ 
+        // Scalanie posortowanych części
+        merge(tab, l, m, r);
     }
 }
-
-// Rekurencyjna funkcja sortująca przez scalanie
-void mergeSort(vector<int>& arr, int left, int right) {
-    if (left < right) {
-        int mid = left + (right - left) / 2;
-
-        // Sortowanie dwóch połówek
-        mergeSort(arr, left, mid);
-        mergeSort(arr, mid + 1, right);
-
-        // Scalanie posortowanych połówek
-        merge(arr, left, mid, right);
-    }
-}
-
-// Funkcja pomocnicza do wypisywania tablicy
-void printArray(const vector<int>& arr) {
-    for (int num : arr)
-        cout << num << " ";
-    cout << endl;
-}
+ 
 
 int main() {
-    vector<int> arr = {12, 11, 13, 5, 6, 7};
-
-    cout << "Tablica przed sortowaniem:\n";
-    printArray(arr);
-
-    mergeSort(arr, 0, arr.size() - 1);
-
-    cout << "Tablica po sortowaniu przez scalanie:\n";
-    printArray(arr);
-
+    int tab[] = {38, 27, 43, 3, 9, 82, 10};
+    int size = sizeof(tab) / sizeof(tab[0]);
+ 
+    cout << "Przed sortowaniem:\n";
+    for (int i = 0; i < size; i++) {
+        cout << tab[i] << " ";
+    }
+    cout << "\n";
+ 
+    mergeSort(tab, 0, size - 1);
+ 
+    cout << "Po sortowaniu:\n";
+    for (int i = 0; i < size; i++) {
+        cout << tab[i] << " ";
+    }
+    cout << "\n";
+ 
     return 0;
 }
